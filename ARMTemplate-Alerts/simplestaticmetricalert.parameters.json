@@ -1,0 +1,36 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "alertName": {
+            "value": "HPS Monitor"
+        },
+        "alertDescription": {
+            "value": "New metric alert created via template"
+        },
+        "alertSeverity": {
+            "value":3
+        },
+        "isEnabled": {
+            "value": true
+        },
+        "resourceId": {
+            "value": "/subscriptions/<SubscriptionID>/resourceGroups/Aimal-Test-RG/providers/Microsoft.Network/loadBalancers/myLoadBalancer"
+        },
+        "metricName": {
+            "value": "DipAvailability"
+        },
+        "operator": {
+          "value": "LessThan"
+        },
+        "threshold": {
+            "value": "65"
+        },
+        "timeAggregation": {
+            "value": "Average"
+        },
+        "actionGroupId": {
+            "value": "/subscriptions/<SubscriptionID>/resourceGroups/Aimal-Test-RG/providers/Microsoft.Insights/actionGroups/Aimal-Test-ActionGroupName"
+        }
+    }
+}
