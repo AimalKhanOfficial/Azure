@@ -32,6 +32,7 @@ const saveToCosmosDb = async (name, employeeId, address) => {
 const isObject = (empNameParam) => typeof empNameParam === 'object';
 const convertToString = (empName) => isObject(empName) ? JSON.stringify(empName) : empName.toString();
 
+//Extra comment - not needed - test
 const retrieveEmployeeData = async (empName) => {
     try {
         console.log('>> findOne query name:', isObject(empName), convertToString(empName), typeof convertToString(empName));
