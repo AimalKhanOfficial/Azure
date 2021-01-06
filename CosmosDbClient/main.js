@@ -13,6 +13,16 @@ app.get('/', async (req, res) => {
     return res.json("Get called");
 });
 
+//Another variation of the same "GET" endpoint, needed for experimenting user input
+app.post('/getData', async (req, res) => {
+    if (connectToCosmosDb()) { 
+        console.log('Connected to CosmosDb');
+        const cosmosDbRes = await retrieveEmployeeData(req.body.empName)
+        return res.send(cosmosDbRes);
+    }
+    return res.json("Get called");
+});
+
 app.post('/', async (req, res) => {
     if (await connectToCosmosDb()) {
         console.log('>> Request Body', req.body);

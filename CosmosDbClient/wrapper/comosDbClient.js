@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 const Employee = require('./models/Employee');
+const configs = require('../configs');
 
-const CONNECTION_STRING = process.env.CONNECTION_STRING || '';
+const CONNECTION_STRING = configs.connectionString || process.env.CONNECTION_STRING;
 
 const connectToCosmosDb = async () => {
     try {
@@ -28,10 +29,14 @@ const saveToCosmosDb = async (name, employeeId, address) => {
     }
 }
 
+const isObject = (empNameParam) => typeof empNameParam === 'object';
+const convertToString = (empName) => isObject(empName) ? JSON.stringify(empName) : empName.toString();
+
 const retrieveEmployeeData = async (empName) => {
     try {
-        const res = await Employee.findOne({
-            name: empName
+        console.log('>> findOne query name:', isObject(empName), convertToString(empName), typeof convertToString(empName));
+        const res = await Employee.find({
+            name: convertToString(empName)
         });
         return res;
     } catch (err) {
